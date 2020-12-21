@@ -1,6 +1,6 @@
 # CIPHERS 
 
-> A collection of ciphers in a Flutter appication. Can be used for encryption/ decryption.
+> A collection of ciphers in a Flutter application. Can be used for encryption/ decryption.
 
 # LIST OF CIPHERS
 * CAESAR 
