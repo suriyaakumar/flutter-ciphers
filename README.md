@@ -14,3 +14,19 @@
 # SCREENSHOTS
 
 > See the screenshots of this app in the /screenshots directory of this repository.
+
+## Portrait
+
+<p class = "left">
+ <img src = "https://github.com/suriyaakumar/flutter-ciphers/blob/master/screenshots/about.jpg" width= 250/>
+ <img src = "https://github.com/suriyaakumar/flutter-ciphers/blob/master/screenshots/portrait-1.jpg" width= 250/>
+ <img src = "https://github.com/suriyaakumar/flutter-ciphers/blob/master/screenshots/portrait-2.jpg" width= 250/>
+ </p>
+ 
+ ## LANDSCAPE
+ 
+ <p class = "left">
+  <img src = "https://github.com/suriyaakumar/flutter-ciphers/blob/master/screenshots/landscape-1.jpg"/>
+  <img src = "https://github.com/suriyaakumar/flutter-ciphers/blob/master/screenshots/landscape-2.jpg"/>
+</p>
+ 
