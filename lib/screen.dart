@@ -159,6 +159,9 @@ class _ScreenState extends State<Screen> {
                               else if (widget.title == "PLAYFAIR CIPHER")
                                 result =
                                     logic.playfairDecrypt(input.text, key.text);
+                              else if (widget.title == "KEYWORD CIPHER")
+                                result =
+                                    logic.keywordDecrypt(input.text, key.text);
                             });
                         },
                         icon: Icon(Icons.lock_open_rounded),

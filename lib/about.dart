@@ -19,31 +19,45 @@ class _AboutState extends State<About> {
       ),
       body: ListView(
         children: [
-          FlutterLogo(
-            size: MediaQuery.of(context).size.height * 0.20,
-          ),
+          Image.asset('assets/logo.png',
+          height: MediaQuery.of(context).orientation == Orientation.portrait 
+          ? MediaQuery.of(context).size.height * 0.20 
+          : MediaQuery.of(context).size.width * 0.25
+          ,
+          width: MediaQuery.of(context).orientation == Orientation.portrait
+          ? MediaQuery.of(context).size.height * 0.20
+          : MediaQuery.of(context).size.width * 0.25
+          ,),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.15,
+            height: MediaQuery.of(context).orientation == Orientation.portrait 
+           ?  MediaQuery.of(context).size.height * 0.10
+           : MediaQuery.of(context).size.width * 0.15,
             child: Center(
               child: Text(
-                'Flutter v.1.22.4',
+                'CIPHERS v1.0',
                 style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.height * 0.03),
+                    fontSize: MediaQuery.of(context).orientation == Orientation.portrait ? MediaQuery.of(context).size.height * 0.03 : MediaQuery.of(context).size.width * 0.05),
               ),
             ),
           ),
           Image.asset(
             'assets/github.png',
-            height: MediaQuery.of(context).size.height * 0.20,
-            width: MediaQuery.of(context).size.height * 0.20,
+            height: MediaQuery.of(context).orientation == Orientation.portrait
+            ? MediaQuery.of(context).size.height * 0.20
+            : MediaQuery.of(context).size.width * 0.25,
+            width: MediaQuery.of(context).orientation == Orientation.portrait
+            ? MediaQuery.of(context).size.height * 0.20
+            : MediaQuery.of(context).size.width * 0.25,
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.10,
+            height: MediaQuery.of(context).orientation == Orientation.portrait 
+            ? MediaQuery.of(context).size.height * 0.07
+            : MediaQuery.of(context).size.width * 0.10,
             child: Center(
               child: Text(
                 'GitHub Repository',
                 style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.height * 0.03),
+                    fontSize: MediaQuery.of(context).orientation == Orientation.portrait ? MediaQuery.of(context).size.height * 0.03 : MediaQuery.of(context).size.width * 0.05),
               ),
             ),
           ),
@@ -55,7 +69,7 @@ class _AboutState extends State<About> {
             child: Text(
               'This GitHub repository will see more ciphers added to it in the future. A link is provided to the repository so that you can see how the ciphers work and also track the repository status.',
               style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.02),
+                  fontSize: MediaQuery.of(context).orientation == Orientation.portrait ? MediaQuery.of(context).size.height * 0.0225 : MediaQuery.of(context).size.width * 0.03),
               textAlign: TextAlign.center,
             ),
           ),

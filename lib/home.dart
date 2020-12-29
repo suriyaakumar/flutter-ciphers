@@ -3,7 +3,6 @@ import 'about.dart';
 import 'screen.dart';
 
 final ciphers = [
-  'BEAUFORT CIPHER',
   'CAESAR CIPHER',
   'KEYWORD CIPHER',
   'PLAYFAIR CIPHER',
