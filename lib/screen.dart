@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'logic.dart';
 
 Logic logic = new Logic();
@@ -20,6 +21,25 @@ class _ScreenState extends State<Screen> {
     setState(() {
       result = '';
     });
+  }
+
+  inputFormattin() {
+    if (widget.title == 'CAESAR CIPHER' || widget.title == 'VIGENERE CIPHER')
+      return <TextInputFormatter>[
+        new FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]"))
+      ];
+  }
+
+  keyFormattin() {
+    if (widget.title == 'CAESAR CIPHER' || widget.title == "RAIL FENCE CIPHER")
+      return <TextInputFormatter>[
+        new FilteringTextInputFormatter.allow(RegExp("[0-9]"))
+      ];
+    else if (widget.title == 'VIGENERE CIPHER' ||
+        widget.title == 'KEYWORD CIPHER')
+      return <TextInputFormatter>[
+        new FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]"))
+      ];
   }
 
   final formKey = GlobalKey<FormState>();
@@ -52,9 +72,9 @@ class _ScreenState extends State<Screen> {
                   ),
                   child: TextFormField(
                     controller: input,
+                    inputFormatters: inputFormattin(),
                     validator: (value) {
-                      if (value.isEmpty) 
-                        return 'Required';
+                      if (value.isEmpty) return 'Required';
                       return null;
                     },
                     decoration: InputDecoration(
@@ -72,10 +92,16 @@ class _ScreenState extends State<Screen> {
                   ),
                   child: TextFormField(
                     controller: key,
+                    inputFormatters: keyFormattin(),
                     validator: (value) {
-                      if (value.isEmpty) 
-                      return 'Required'; 
-
+                      if (value.isEmpty)
+                        return 'Required';
+                      else if (widget.title == 'RAIL FENCE CIPHER' &&
+                          int.parse(value) > input.text.length)
+                        return 'Number key should not be bigger than length of text.';
+                      else if (widget.title == 'PLAYFAIR CIPHER' &&
+                          key.text.length < 6)
+                        return 'Playfair key size must atleast be 6 characters long.';
                       return null;
                     },
                     decoration: InputDecoration(
@@ -95,8 +121,21 @@ class _ScreenState extends State<Screen> {
                         onPressed: () {
                           if (formKey.currentState.validate())
                             setState(() {
-                              result = logic.caesar(
-                                  input.text, int.parse(key.text), 1);
+                              if (widget.title == "CAESAR CIPHER")
+                                result = logic.caesar(
+                                    input.text, int.parse(key.text), 1);
+                              else if (widget.title == "VIGENERE CIPHER")
+                                result =
+                                    logic.vigenere(input.text, key.text, 1);
+                              else if (widget.title == "RAIL FENCE CIPHER")
+                                result = logic.railfenceEncrypt(
+                                    input.text, int.parse(key.text));
+                              else if (widget.title == "PLAYFAIR CIPHER")
+                                result =
+                                    logic.playfairEncrypt(input.text, key.text);
+                              else if (widget.title == "KEYWORD CIPHER")
+                                result =
+                                    logic.keywordEncrypt(input.text, key.text);
                             });
                         },
                         icon: Icon(Icons.lock_outline),
@@ -107,7 +146,20 @@ class _ScreenState extends State<Screen> {
                       RaisedButton.icon(
                         onPressed: () {
                           if (formKey.currentState.validate())
-                            logic.caesar(input.text, int.parse(key.text), 0);
+                            setState(() {
+                              if (widget.title == "CAESAR CIPHER")
+                                result = logic.caesar(
+                                    input.text, int.parse(key.text), 0);
+                              else if (widget.title == "VIGENERE CIPHER")
+                                result =
+                                    logic.vigenere(input.text, key.text, 0);
+                              else if (widget.title == "RAIL FENCE CIPHER")
+                                result = logic.railfenceDecrypt(
+                                    input.text, int.parse(key.text));
+                              else if (widget.title == "PLAYFAIR CIPHER")
+                                result =
+                                    logic.playfairDecrypt(input.text, key.text);
+                            });
                         },
                         icon: Icon(Icons.lock_open_rounded),
                         label: Text('DECRYPT'),

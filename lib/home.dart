@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'about.dart';
 import 'screen.dart';
 
 final ciphers = [
@@ -20,8 +21,17 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Colors.transparent,
           elevation: 0,
+          actions: [
+            IconButton(
+                icon: Icon(Icons.info),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => About()));
+                })
+          ],
           title: Text('CIPHERS', style: TextStyle(color: Colors.black)),
           centerTitle: true,
         ),
@@ -39,15 +49,16 @@ class _HomeState extends State<Home> {
                 ),
                 child: ListTile(
                   onTap: () {
-                  Navigator.push( context, 
-                  MaterialPageRoute( builder: (context) => Screen(title: ciphers[index])));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                Screen(title: ciphers[index])));
                   },
                   leading: Icon(Icons.lock, color: Colors.black),
                   title: Text(ciphers[index]),
                 ),
               );
-            }
-          )
-        );
-      }
-    }
+            }));
+  }
+}
